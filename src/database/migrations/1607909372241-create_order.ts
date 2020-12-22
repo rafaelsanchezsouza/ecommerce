@@ -31,6 +31,10 @@ export class createOrder1607909372241 implements MigrationInterface {
             type: 'boolean',
             default: false,
           },
+          {
+            name: 'products',
+            type: 'integer',
+          },
         ],
       })
     );
