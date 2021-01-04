@@ -3,13 +3,25 @@ import { getRepository } from 'typeorm';
 import Order from '../models/order';
 
 export default {
-  // async index(request: Request, response: Response) {
-  //   const orderRepository = getRepository(Order);
+  async index(request: Request, response: Response) {
+    const orderRepository = getRepository(Order);
 
-  //   const orders = await orderRepository.find();
+    const orders = await orderRepository.find();
 
-  //   return response.json(orders);
-  // },
+    return response.json(orders);
+  },
+
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const orderRepository = getRepository(Order);
+
+    const orders = await orderRepository.findOneOrFail(id);
+
+    // console.log(id);
+
+    return response.json(orders);
+  },
 
   async create(request: Request, response: Response) {
     console.log('Entrou no Create');
