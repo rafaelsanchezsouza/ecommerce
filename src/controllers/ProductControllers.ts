@@ -26,7 +26,7 @@ export default {
   async create(request: Request, response: Response) {
     console.log('Entrou no Create');
 
-    const { name, categoria, medida, preço_final } = request.body;
+    const { name, categoria, medida, preco_final } = request.body;
     console.log(request.body);
     const productRepository = getRepository(Product);
 
@@ -34,7 +34,7 @@ export default {
       name,
       categoria,
       medida,
-      preço_final,
+      preco_final,
     });
 
     await productRepository.save(product);

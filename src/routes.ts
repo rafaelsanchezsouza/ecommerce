@@ -12,8 +12,8 @@ routes.post('/order', OrderControllers.create);
 routes.get('/order', OrderControllers.index);
 routes.get('/order/:id', OrderControllers.show);
 
-routes.post('/product', ProductControllers.create);
-routes.get('/product', ProductControllers.index);
-routes.get('/product/:id', ProductControllers.show);
+routes.post('/products', ProductControllers.create);
+routes.get('/products', ProductControllers.index);
+routes.get('/products/:id', ProductControllers.show);
 
 export default routes;

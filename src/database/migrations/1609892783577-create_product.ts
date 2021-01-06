@@ -27,7 +27,7 @@ export class createProduct1609892783577 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'preço_final',
+            name: 'preco_final',
             type: 'integer',
           },
         ],
@@ -36,6 +36,6 @@ export class createProduct1609892783577 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('product');
+    await queryRunner.dropTable('products');
   }
 }

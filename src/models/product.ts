@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('product')
+@Entity('products')
 export default class Product {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -11,5 +11,5 @@ export default class Product {
   @Column()
   medida: string;
   @Column()
-  preço_final: number;
+  preco_final: number;
 }
