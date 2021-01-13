@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+import Image from '../models/images';
 import Product from '../models/product';
+import productView from '../views/product_view';
 
 export default {
   async index(request: Request, response: Response) {
@@ -8,7 +10,7 @@ export default {
 
     const products = await productRepository.find();
 
-    return response.json(products);
+    return response.json(productView.renderMany(products));
   },
 
   async show(request: Request, response: Response) {
@@ -16,18 +18,21 @@ export default {
 
     const productRepository = getRepository(Product);
 
-    const products = await productRepository.findOneOrFail(id);
+    const product = await productRepository.findOneOrFail(id);
 
-    // console.log(id);
-
-    return response.json(products);
+    return response.json(productView.render(product));
   },
 
   async create(request: Request, response: Response) {
-    console.log('Entrou no Create');
+    console.log('Create Request');
+    console.log(request.file.filename);
 
     const { name, categoria, medida, preco_final } = request.body;
-    console.log(request.body);
+
+    const requestImage = request.file.filename;
+    const image = { path: requestImage };
+
+    // console.log(request.body);
     const productRepository = getRepository(Product);
 
     const product = productRepository.create({
@@ -35,6 +40,7 @@ export default {
       categoria,
       medida,
       preco_final,
+      image,
     });
 
     await productRepository.save(product);

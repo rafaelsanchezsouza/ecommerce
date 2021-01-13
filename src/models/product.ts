@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import Image from './images';
 
 @Entity('products')
 export default class Product {
@@ -12,4 +13,8 @@ export default class Product {
   medida: string;
   @Column()
   preco_final: number;
+  @OneToOne(() => Image, (image) => image.product, {
+    cascade: ['insert', 'update'],
+  })
+  image: Image;
 }
