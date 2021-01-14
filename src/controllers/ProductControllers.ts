@@ -40,10 +40,12 @@ export default {
       categoria,
       medida,
       preco_final,
-      image,
+      // image,
     });
 
+    console.log('Vai Salvar');
     await productRepository.save(product);
+    console.log('Salvou');
 
     return response.status(201).json(product);
   },
