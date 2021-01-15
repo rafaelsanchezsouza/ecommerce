@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import Image from '../models/images';
 import Product from '../models/product';
 import productView from '../views/product_view';
+import * as Yup from 'yup';
 
 export default {
   async index(request: Request, response: Response) {
@@ -35,13 +36,27 @@ export default {
     // console.log(request.body);
     const productRepository = getRepository(Product);
 
-    const product = productRepository.create({
+    const data = {
       name,
       categoria,
       medida,
       preco_final,
-      adwadaimage,
+      image,
+    };
+
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      categoria: Yup.string().required(),
+      medida: Yup.string().required(),
+      preco_final: Yup.string().required(),
+      image: Yup.object().shape({ path: Yup.string().required() }),
     });
+
+    await schema.validate(data, {
+      abortEarly: false,
+    });
+
+    const product = productRepository.create(data);
 
     console.log('Vai Salvar');
     await productRepository.save(product);
