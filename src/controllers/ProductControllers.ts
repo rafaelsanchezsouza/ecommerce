@@ -40,7 +40,7 @@ export default {
       categoria,
       medida,
       preco_final,
-      // image,
+      adwadaimage,
     });
 
     console.log('Vai Salvar');
