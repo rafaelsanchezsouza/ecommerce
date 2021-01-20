@@ -9,7 +9,7 @@ export default {
       categoria: product.categoria,
       medida: product.medida,
       preco_final: product.preco_final,
-      images: imagesView.render(product.image),
+      image: imagesView.render(product.image),
     };
   },
   renderMany(products: Product[]) {

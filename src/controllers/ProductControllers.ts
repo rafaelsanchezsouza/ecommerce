@@ -7,19 +7,25 @@ import * as Yup from 'yup';
 
 export default {
   async index(request: Request, response: Response) {
+    // console.log('Hello Index!');
     const productRepository = getRepository(Product);
 
-    const products = await productRepository.find();
-
-    return response.json(productView.renderMany(products));
+    const products = await productRepository.find({
+      relations: ['image'],
+    });
+    // return response.json(productView.renderMany(products));
+    return response.json(products);
   },
 
   async show(request: Request, response: Response) {
+    // console.log('Hello Show!');
     const { id } = request.params;
 
     const productRepository = getRepository(Product);
 
-    const product = await productRepository.findOneOrFail(id);
+    const product = await productRepository.findOneOrFail(id, {
+      relations: ['image'],
+    });
 
     return response.json(productView.render(product));
   },

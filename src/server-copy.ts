@@ -10,11 +10,9 @@ import errorHandler from './errors/handler';
 const app = express();
 app.use(express.json()); //para que express consiga ler json
 
-// app.use(cors());
-// app.get('/products', (request, response) => {
-//   return response.send('Hello World!!!');
-// });
+app.use(cors);
 app.use(routes);
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 app.use(errorHandler);
-app.listen(3333);
+console.log('errorHandled!');
+app.listen(3111);
