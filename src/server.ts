@@ -10,7 +10,7 @@ import errorHandler from './errors/handler';
 const app = express();
 app.use(express.json()); //para que express consiga ler json
 
-// app.use(cors());
+app.use(cors());
 // app.get('/products', (request, response) => {
 //   return response.send('Hello World!!!');
 // });

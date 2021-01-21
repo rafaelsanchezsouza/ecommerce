@@ -13,8 +13,8 @@ export default {
     const products = await productRepository.find({
       relations: ['image'],
     });
-    // return response.json(productView.renderMany(products));
-    return response.json(products);
+    return response.json(productView.renderMany(products));
+    // return response.json(products);
   },
 
   async show(request: Request, response: Response) {
@@ -31,15 +31,11 @@ export default {
   },
 
   async create(request: Request, response: Response) {
-    console.log('Create Request');
-    console.log(request.file.filename);
-
     const { name, categoria, medida, preco_final } = request.body;
 
     const requestImage = request.file.filename;
     const image = { path: requestImage };
 
-    // console.log(request.body);
     const productRepository = getRepository(Product);
 
     const data = {
@@ -64,9 +60,7 @@ export default {
 
     const product = productRepository.create(data);
 
-    console.log('Vai Salvar');
     await productRepository.save(product);
-    console.log('Salvou');
 
     return response.status(201).json(product);
   },
